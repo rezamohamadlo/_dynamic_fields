@@ -10,7 +10,7 @@ class SalaryCalculation(models.Model):
     working_month = models.ForeignKey(WorkingMonth, blank=True, null=True, on_delete=models.PROTECT, verbose_name='ماه کاری')
     employee_workload = models.ForeignKey(EmployeeWorkload, blank=True, null=True,editable=False, on_delete=models.PROTECT, verbose_name='کارکرد کارمند')
     tax = models.IntegerField(default=0, editable=False, verbose_name='مالیات')
-    insurance = models.IntegerField(default=0, editable=False, verbose_name='بیمه')
+    insurance = models.IntegerField(default=0, editable=False, verbose_name='مجموع شامل بیمه')
     insurance_employee_share = models.IntegerField(default=0, editable=False, verbose_name='ییمه سهم کارگر')
     insurance_employer_share = models.IntegerField(default=0, editable=False, verbose_name='ییمه سهم کارفرما')
     base_wage = models.IntegerField(default=0, editable=False, verbose_name='حقوق مبنا')
