@@ -10,7 +10,7 @@ class SalaryCalculationItemInline(admin.TabularInline):
 class SalaryCalculationAdmin(admin.ModelAdmin):
     list_display = [field.name for field in SalaryCalculation._meta.fields]
     inlines = [SalaryCalculationItemInline]
-    readonly_fields = ('tax',)  # Make total read-only if you want
+    readonly_fields = ('tax', 'insurance')  # Make total read-only if you want
 
     def save_related(self, request, form, formsets, change):
         super().save_related(request, form, formsets, change)

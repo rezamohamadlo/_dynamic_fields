@@ -11,7 +11,8 @@ class SalaryItem(models.Model):
     include_in_base_wage = models.BooleanField(default= False, verbose_name='درج در حقوق مبنا')
     include_in_insurance = models.BooleanField(default= False, verbose_name='شامل بیمه')
     include_in_tax = models.BooleanField(default= False, verbose_name='شامل مالیات')
-
+    include_in_overtime = models.BooleanField(default=False, verbose_name='شامل اضافه کاری')
+    
     def __str__(self):
         return self.persian_name
     

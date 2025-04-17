@@ -3,14 +3,29 @@ from salary_item.models import SalaryItem
 
 
 class SalaryCalculation(models.Model):
-    tax = models.IntegerField(default=0, editable=False)
+    tax = models.IntegerField(default=0, editable=False, verbose_name='مالیات')
+    insurance = models.IntegerField(default=0, editable=False, verbose_name='بیمه')
+    base_wage = models.IntegerField(default=0, editable=False, verbose_name='حقوق مبنا')
+    overtime = models.IntegerField(default=0, editable=False, verbose_name='اضافه کار')
     # other fields
 
     def update_total(self):
-        total = self.items.filter(salary_item__include_in_tax=True).aggregate(
-            total_amount=models.Sum('amount')
-        )['total_amount'] or 0
-        self.tax = total
+        self.tax = self.items.filter(salary_item__include_in_tax=True).aggregate(
+            total=models.Sum('amount')
+        )['total'] or 0
+
+        self.insurance = self.items.filter(salary_item__include_in_insurance=True).aggregate(
+            total=models.Sum('amount')
+        )['total'] or 0
+
+        self.base_wage = self.items.filter(salary_item__include_in_base_wage=True).aggregate(
+            total=models.Sum('amount')
+        )['total'] or 0
+
+        self.overtime = self.items.filter(salary_item__include_in_overtime=True).aggregate(
+            total=models.Sum('amount')
+        )['total'] or 0
+
         self.save()
 
 class SalaryCalculationItem(models.Model):
