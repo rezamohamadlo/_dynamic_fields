@@ -79,6 +79,8 @@ class Employee(models.Model):
 
     class Meta:
         db_table = 'employee'
+        verbose_name = 'کارمند'
+        verbose_name_plural = 'پرسنل'
 
 
     def __str__(self):

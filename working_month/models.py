@@ -34,3 +34,5 @@ class WorkingMonth(models.Model):
 
     class Meta:
         db_table = 'working_month'
+        verbose_name = 'ماه کاری'
+        verbose_name_plural = 'ماه های کاری'

@@ -58,18 +58,23 @@ class SalaryCalculation(models.Model):
         self.insurance_employee_share = self.insurance * 0.07
         self.insurance_employer_share = self.insurance * 0.23   
         
-        #calculate base_wage
-        self.overtime = self.items.filter(salary_item__include_in_base_wage=True).aggregate(
-            total=models.Sum('amount')
-        )['total'] or 0
-        
         #calculate overtime
         overtime_rate = self.items.filter(salary_item__include_in_overtime=True).aggregate(
             total=models.Sum('amount')
         )['total'] or 0
         self.overtime = overtime_rate * self.employee_workload.employee_workload_overtime_hours
 
+        #calculate base_wage
+        base_wage_rate = self.items.filter(salary_item__include_in_base_wage=True).aggregate(
+            total=models.Sum('amount')
+        )['total'] or 0
+        self.base_wage = base_wage_rate * self.employee_workload.employee_workload_work_days
         self.save()
+
+    class Meta:
+        db_table = 'salary_calculation'
+        verbose_name = 'محاسبه حقوق'
+        verbose_name_plural = 'محاسبه حقوق ها'
 
 
 

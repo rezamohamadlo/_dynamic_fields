@@ -60,3 +60,8 @@ class EmployeeWorkload(models.Model):
 
     def __str__(self):
         return f"{self.employee_workload_first_name} {self.employee_workload_last_name} {self.employee_workload_working_month}"
+        
+    class Meta:
+        db_table = 'employee_workload'
+        verbose_name = 'کارکرد کارمند'
+        verbose_name_plural = 'کارکرد پرسنل'

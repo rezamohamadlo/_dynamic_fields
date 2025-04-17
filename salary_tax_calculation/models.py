@@ -50,3 +50,7 @@ class SalaryTaxCalculation(models.Model):
     def __str__(self):
         return f"Salary: {self.salary_tax_calculation_salary}, Tax: {self.salary_tax_calculation_calculated_tax}"
     
+    class Meta:
+        db_table = 'salary_tax_calculation'
+        verbose_name = 'محسابه مالیات حقوق'
+        verbose_name_plural = 'محاسبه مالیات های حقوق ها'
