@@ -2,11 +2,12 @@ from django.db import models
 from salary_tax_threshold.models import SalaryTaxThreshold  # Replace with your app name
 from decimal import Decimal
 from employee.models import Employee
-
+from working_month.models import WorkingMonth
 
 class SalaryTaxCalculation(models.Model):
     id = models.BigAutoField(primary_key=True)
-    salary_tax_calculation_employee = models.ForeignKey(Employee, on_delete=models.PROTECT, blank=True, null=True)
+    salary_tax_calculation_employee = models.ForeignKey(Employee, on_delete=models.PROTECT, blank=True, null=True, verbose_name='کارمند')
+    salary_tax_calculation_working_month = models.ForeignKey(WorkingMonth, blank=True, null=True, on_delete=models.PROTECT, verbose_name='ماه کاری')
     salary_tax_calculation_salary = models.DecimalField(max_digits=16, decimal_places=0, verbose_name='حقوق')
     salary_tax_calculation_calculated_tax = models.DecimalField(default=0, max_digits=16, decimal_places=0, verbose_name='مالیات محاسبه شده', null=True, blank=True, editable=False)
 
