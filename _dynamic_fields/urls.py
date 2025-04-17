@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # path('salary_tax_calculation/', include('salary_tax_calculation.urls')),  # salary_tax_calculation app
     path('salary_calculation/', include('salary_calculation.urls')),  # salary_calculation app
     path('admin/', admin.site.urls),
 ]

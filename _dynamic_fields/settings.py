@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'working_month.apps.WorkingMonthConfig',
+    'salary_tax_calculation.apps.SalaryTaxCalculationConfig',
+    'salary_tax_threshold.apps.SalaryTaxThresholdConfig',
+    'employee_workload.apps.EmployeeWorkloadConfig',
+    'employee.apps.EmployeeConfig',
     'salary_calculation.apps.SalaryCalculationConfig',
     'salary_item.apps.SalaryItemConfig',
     'rest_framework',
