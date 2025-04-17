@@ -8,15 +8,16 @@ class SalaryCalculationItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SalaryCalculationItem
+        # fields = ['id', 'salary_item', 'salary_item_name', 'amount']
         fields = ['id', 'salary_item', 'salary_item_name', 'amount']
-        
+
 class SalaryCalculationSerializers(serializers.ModelSerializer):
     items = SalaryCalculationItemSerializer(many=True)
 
     class Meta:
         model = SalaryCalculation
-        fields = ['id', 'sum_of_items', 'items']
-
+        # fields = ['id', 'sum_of_items', 'items']
+        fields = '__all__'
     def create(self, validated_data):
         items_data = validated_data.pop('items')
         calculation = SalaryCalculation.objects.create(**validated_data)
