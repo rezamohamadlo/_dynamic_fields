@@ -59,4 +59,4 @@ class EmployeeWorkload(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.employee_workload_first_name} {self.employee_workload_last_name}"
+        return f"{self.employee_workload_first_name} {self.employee_workload_last_name} {self.employee_workload_working_month}"
