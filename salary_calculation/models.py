@@ -3,11 +3,14 @@ from salary_item.models import SalaryItem
 
 
 class SalaryCalculation(models.Model):
-    sum_of_items = models.IntegerField(default=0, editable=False)
+    tax = models.IntegerField(default=0, editable=False)
     # other fields
 
     def update_total(self):
-        self.sum_of_items = sum(item.amount for item in self.items.all())
+        total = self.items.filter(salary_item__include_in_tax=True).aggregate(
+            total_amount=models.Sum('amount')
+        )['total_amount'] or 0
+        self.tax = total
         self.save()
 
 class SalaryCalculationItem(models.Model):
